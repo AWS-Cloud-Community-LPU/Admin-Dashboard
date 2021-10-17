@@ -3,7 +3,7 @@ import { Box, Container,
     Heading, Text, 
     Tabs, TabList, 
     Tab, TabPanels, 
-    TabPanel, Button  } from "@chakra-ui/react";
+    TabPanel  } from "@chakra-ui/react";
 import Sidenav from "../../Components/Sidenav/Sidenav";
 import AllMembers from "../../Components/Members/All";
 import Anchoring from "../../Components/Members/Anchors";
@@ -39,7 +39,6 @@ const Members = () => {
 
             <Box mt="4" mb="10" display="flex">
             <Heading color="#ff9900" fontSize="3xl" ml="6" mt="4">Community Members</Heading>
-            <Button px="5" mt="3" mr="4" ml="auto" colorScheme="whatsapp">Add Member</Button>
             </Box>
 
             <Tabs ml={["0","0","10"]} mt="20" colorScheme="orange">
