@@ -53,7 +53,7 @@ const CreateBlog = () => {
         })
         .catch((err) => {
             console.log("Error " + err);
-            setSaveError("Failed to save !")
+            setSaveError("Failed to save !");
         })
     }
 

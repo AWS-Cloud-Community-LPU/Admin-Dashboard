@@ -43,14 +43,14 @@ const Home = () => {
         })
     },[])
 
-    // ! Function to deletea blog
+    // ! Function to delete blog
     function handleDelete(id){
         db.collection("blogs")
         .doc(id)
         .delete()
         .then((result) => {
             console.log("Deleted");
-            deleteCinfirmation();
+            deleteConfirmation();
             // window.location.reload(); 
         })
         .catch((err) => {
@@ -60,7 +60,7 @@ const Home = () => {
     }
 
     // ! Function to give delete confirmation
-    function deleteCinfirmation(){
+    function deleteConfirmation(){
         toast({
             title: "Blog deleted successfully !.",
             status: "success",
