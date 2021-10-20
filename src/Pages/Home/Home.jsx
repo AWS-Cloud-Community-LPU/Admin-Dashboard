@@ -152,7 +152,9 @@ const Home = () => {
                             </MenuButton>
                             <MenuList>
                                 <MenuItem>Set as Featured</MenuItem>
+                                <Link to={`/update/blog/${result.id}`}>
                                 <MenuItem>Edit Blog</MenuItem>
+                                </Link>
                                 <MenuItem onClick={ () => handleDelete(result.id) }>Delete Blog</MenuItem>
                             </MenuList>
                         </Menu>

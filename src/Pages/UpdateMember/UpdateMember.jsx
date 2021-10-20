@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { Box, Container, Heading, Image, Button, Center } from "@chakra-ui/react";
 import { Input, FormLabel } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
@@ -8,11 +8,21 @@ import { useToast } from "@chakra-ui/react";
 import firebase from 'firebase/compat/app';
 import { db, storage } from "../../firebase";
 
-const AddMember = () => {
+const UpdateMember = () => {
 
+    const {id} = useParams();
     const toast = useToast();
     const history = useHistory();
 
+    const nameRef = useRef();
+    const domainRef = useRef();
+    const birthDateRef = useRef();
+    const linkedinRef = useRef();
+    const twitterRef = useRef();
+    const facebookRef = useRef();
+    const instagramRef = useRef();
+
+    const [data, setData] = useState("");
     const [name, setName] = useState("");
     const [picture, setPicture] = useState("");
     const [domain, setDomain] = useState("");
@@ -26,39 +36,58 @@ const AddMember = () => {
     const [pending, setPending] = useState("Upload");
     const [spinner, setSpinner] = useState(false);
     const [loading, setLoading] = useState("Save");
+    const [error, setError] = useState("");
+
+    // ! To get data from DB
+    useEffect(() => {
+        db.collection("members")
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+            console.log(snapshot.data());
+            setData(snapshot.data());
+            setProfilePic(snapshot.data().profile_pic);
+        })
+        .catch((err) => {
+            console.log(err);
+            setError("Failed to fetch data.");
+        })
+    },[id])
 
         // ! Function to save data to DB
         function handleSubmit(e){
             e.preventDefault();
-            setLoading("Saving...");
+            setLoading("Updating...");
     
-            db.collection("members").add({
-                name: name,
+            db.collection("members")
+            .doc(id)
+            .update({
+                name: nameRef.current.value,
                 profile_pic: profilePic,
-                domain: domain,
-                birthday: birthDate,
-                linkedin_link: linkedin,
-                twitter_link: twitter,
-                facebook_link: facebook,
-                instagram_link: instagram,
+                domain: domainRef.current.value,
+                birthday: birthDateRef.current.value,
+                linkedin_link: linkedinRef.current.value,
+                twitter_link: twitterRef.current.value,
+                facebook_link: facebookRef.current.value,
+                instagram_link: instagramRef.current.value,
                 time: firebase.firestore.Timestamp.fromDate(new Date())
             })
             .then((result) => {
                 console.log(result);
                 console.log("Saved");
                 giveConfirmnation();
-                setLoading("Saved Successfully !");
+                setLoading("Updated Successfully !");
             })
             .catch((err) => {
                 console.log("Error " + err);
-                setLoading("Failed to save");
+                setLoading("Failed to update");
             })
         }
 
          // ! To give confirmation
         function giveConfirmnation(){
             toast({
-                title: "Member added successfully !",
+                title: "Member updated successfully !",
                 status: "success",
                 duration: 6000,
                 isClosable: true,
@@ -98,7 +127,6 @@ const AddMember = () => {
             }
             )
         }
-    
 
     return (
         <Box pb="20">
@@ -106,6 +134,7 @@ const AddMember = () => {
 
                 <Heading mt="8" mb="10">Add New Member</Heading>
 
+                { data &&
                 <Box>
                 <form onSubmit={ handleSubmit }>
 
@@ -136,13 +165,13 @@ const AddMember = () => {
 
                     <Box mt="8" mb={["8", "10"]}>
                     <FormLabel>Name</FormLabel>
-                    <Input onChange={ (e) => setName(e.target.value) } placeholder="Enter name" />
+                    <Input ref={ nameRef } defaultValue={ data.name } placeholder="Enter name" />
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Select Domain</FormLabel>
-                    <Select onChange={ (e) => setDomain(e.target.value) } placeholder="Select option">
+                    <Select ref={ domainRef } defaultValue={ data.domain } placeholder="Select option">
                     <option value="Anchor">Anchoring</option>
                     <option value="Web Development">Web Development</option>
                     <option value="Content">Content Development</option>
@@ -153,29 +182,29 @@ const AddMember = () => {
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Date of Borth</FormLabel>
-                    <Input type="date" onChange={ (e) => setBirthDate(e.target.value) }/>
+                    <Input type="date" ref={ birthDateRef } defaultValue={ data.birthday }/>
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Linkedin Link</FormLabel>
-                    <Input onChange={ (e) => setLinkedin(e.target.value) } placeholder="Enter link" />
+                    <Input ref={ linkedinRef } defaultValue={ data.linkedin_link } placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Twitter Link</FormLabel>
-                    <Input onChange={ (e) => setTwitter(e.target.value) } placeholder="Enter link" />
+                    <Input ref={ twitterRef } defaultValue={ data.twitter_link } placeholder="Enter link" />
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap" mb="10">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Instagram</FormLabel>
-                    <Input onChange={ (e) => setInstagram(e.target.value) } placeholder="Enter link" />
+                    <Input ref={ instagramRef } defaultValue={ data.instagram_link } placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Facebook</FormLabel>
-                    <Input onChange={ (e) => setFacebook(e.target.value) } placeholder="Enter link" />
+                    <Input ref={ facebookRef } defaultValue={ data.facebook_link } placeholder="Enter link" />
                     </Box>
                     </Box>
 
@@ -190,11 +219,11 @@ const AddMember = () => {
                     </Center>
 
                 </form>
-                </Box>
+                </Box>}
 
             </Container>
         </Box>
     );
 }
  
-export default AddMember;
+export default UpdateMember;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Box, SimpleGrid, Image, Center, Text, Button, Spinner } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import {
@@ -94,12 +95,12 @@ const AllMembers = () => {
             }
                 
 
-            <SimpleGrid mt="8" pb="8" minChildWidth={["150px", "180px", "220px"]} spacing={10}>
+            <Box mt="8" pb="8" display="flex" flexWrap="wrap" justifyContent="space-between">
 
                 { data &&
                 <>
                 { data.docs.map(result => (
-                <Box style={{boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"}} boxShadow="md" key={ result.id } 
+                <Box w="16rem" mt="5" style={{boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"}} boxShadow="md" key={ result.id } 
                 borderRadius="md"
                 height="300px">  
 
@@ -108,7 +109,9 @@ const AllMembers = () => {
                     Actions
                 </MenuButton>
                 <MenuList>
+                    <Link to={`update/member/${result.id}`}>
                     <MenuItem>Edit</MenuItem>
+                    </Link>
                     <MenuItem onClick={ () => handleDelete(result.id) }>Delete</MenuItem>
                 </MenuList>
                 </Menu>
@@ -145,23 +148,10 @@ const AllMembers = () => {
                 </a>
                 </Box>
 
-                {/* <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                    Actions
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-                </Menu> */}
-
                 </Box>
                 ))}
                 </>} 
-            </SimpleGrid>
+            </Box>
         </Box>
     );
 }

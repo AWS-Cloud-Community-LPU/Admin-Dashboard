@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Box, Container, 
     Grid, GridItem, 
     Heading, Text, 
@@ -157,7 +158,9 @@ const Events = () => {
                             </MenuButton>
                             <MenuList>
                                 <MenuItem>Set as Featured</MenuItem>
+                                <Link to={`/update/event/${ result.id}`}>
                                 <MenuItem>Edit Event</MenuItem>
+                                </Link>
                                 <MenuItem onClick={ () => handleDelete(result.id) }>Delete Event</MenuItem>
                              </MenuList>
                         </Menu>

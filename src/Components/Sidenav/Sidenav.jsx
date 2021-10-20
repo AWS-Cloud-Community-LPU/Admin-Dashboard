@@ -1,9 +1,14 @@
 import "./Sidenav.css";
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text } from "@chakra-ui/layout";
-import { Link } from "react-router-dom";
+import { Box, Heading, Text, Button, Center } from "@chakra-ui/react";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
 const Sidenav = () => {
+
+    const { logout } = useAuth();
+    const history = useHistory();
+    const [error, setError] = useState("");
 
     const [home, setHome] = useState("");
     const [createBlog, setCreateBlog] = useState("");
@@ -51,6 +56,18 @@ const Sidenav = () => {
             },10);
     }
 
+    // ! Function for logout
+    async function handleLogout() {
+        setError("");
+    
+        try {
+          await logout();
+          history.push("/login");
+        } catch {
+          setError("Failed to log out");
+        }
+    }
+
     return (
         <Box>
             <Heading pl="16" mt="6" fontSize="xl">CATEGORIES</Heading>
@@ -90,6 +107,10 @@ const Sidenav = () => {
             mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
             fontSize="lg" mt="2">Add Members</Text>
             </Link>
+
+            <Center>
+            <Button onClick={ handleLogout } mt="3" w="80%" mx="auto" colorScheme="red">Logout</Button>
+            </Center>
 
         </Box>
     );
