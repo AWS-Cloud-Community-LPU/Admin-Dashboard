@@ -30,6 +30,7 @@ const Events = () => {
     useEffect(() => {
         setLoading(true);
         db.collection("events")
+        .orderBy("time","desc")
         .get()
         .then((snapshot) => {
             console.log(snapshot);

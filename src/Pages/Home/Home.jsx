@@ -30,6 +30,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
         db.collection("blogs")
+        .orderBy("time","desc")
         .get()
         .then((snapshot) => {
             console.log(snapshot);
