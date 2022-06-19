@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, Container, 
-    Grid, GridItem, 
+    Divider,
     Heading, Text, 
     Button, Image, 
     Menu, MenuButton, 
@@ -15,7 +15,6 @@ import {
     CloseButton
   } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import Sidenav from "../../Components/Sidenav/Sidenav";
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { db } from "../../firebase";
 
@@ -63,7 +62,7 @@ const Home = () => {
     // ! Function to give delete confirmation
     function deleteConfirmation(){
         toast({
-            title: "Blog deleted successfully !.",
+            title: "Blog deleted successfully !",
             status: "success",
             duration: 6000,
             isClosable: true,
@@ -73,29 +72,15 @@ const Home = () => {
 
 
     return (
-        <Box mt="5">
+        <Box pt="5" mb="24">
 
-            <Container maxW="container.3xl">
-            <Grid
-            h="600px"
-            templateRows="repeat(2, 1fr)"
-            templateColumns="repeat(5, 1fr)"
-            gap={4}
-            >
-            <GridItem 
-            height="40rem"
-            boxShadow="2xl"
-            borderRadius="lg" textAlign="left" 
-            display={["none", "none", "block"]} 
-            rowSpan={2} colSpan={1}>
-                <Sidenav/>
-            </GridItem>
-
-            <GridItem colSpan={[5,5,4]}>
-
-                <Box mb="10" display="flex">
-                <Heading color="#ff9900" fontSize="3xl" ml="6" mt="4">All Blogs</Heading>
+            <Container maxW="container.xl">
+                <Box mb="3" display="flex">
+                <Text color="#ff9900" fontSize="4xl" ml="6" mt="4" fontWeight="400">
+                    All Blogs Appear Here
+                </Text>
                 </Box>
+                <Divider mb="10" />
 
                 { error &&
                     <Alert status="error">
@@ -124,7 +109,7 @@ const Home = () => {
                 <>
                 { data.docs.map( result => (
 
-                <Box key={ result.id } boxShadow="2xl" 
+                <Box key={ result.id } boxShadow="lg" 
                 borderRadius="lg" bg="#ffffff" 
                 my="6" mx={["0","6"]} display="flex" 
                 flexWrap={["wrap", "wrap", "nowrap"]} 
@@ -166,9 +151,6 @@ const Home = () => {
                 ))}
                 </>}
 
-            </GridItem>
-
-            </Grid>
             </Container>
 
         </Box>

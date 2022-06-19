@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Box, Container, Heading, Image, Button, Center } from "@chakra-ui/react";
+import { Box, Container, Text, Divider, Image, Button, Center } from "@chakra-ui/react";
 import { Input, FormLabel } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
@@ -102,9 +102,12 @@ const AddMember = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="8" mb="10">Add New Member</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Add New Member
+                </Text>
+                <Divider mb="10" />
 
                 <Box>
                 <form onSubmit={ handleSubmit }>
@@ -118,11 +121,13 @@ const AddMember = () => {
                     </Center>
 
                     <Center mt="6">
-                    <Input onChange={ (e) => setPicture(e.target.files) } pt="1" pl="1" type="file"/>
+                    <Input onChange={ (e) => setPicture(e.target.files) } 
+                    variant='filled' size='lg'
+                    pt="1" pl="1" type="file"/>
                     </Center>
 
                     <Center>
-                    <Button onClick={ handleUpload } w="100%" mt="5" colorScheme="orange">
+                    <Button onClick={ handleUpload } w="10rem" mt="5" colorScheme="orange">
                         { pending &&
                         <>
                         { pending }
@@ -136,13 +141,17 @@ const AddMember = () => {
 
                     <Box mt="8" mb={["8", "10"]}>
                     <FormLabel>Name</FormLabel>
-                    <Input onChange={ (e) => setName(e.target.value) } placeholder="Enter name" />
+                    <Input onChange={ (e) => setName(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Enter name" />
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Select Domain</FormLabel>
-                    <Select onChange={ (e) => setDomain(e.target.value) } placeholder="Select option">
+                    <Select onChange={ (e) => setDomain(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Select option">
                     <option value="Anchor">Anchoring</option>
                     <option value="Web Development">Web Development</option>
                     <option value="Content">Content Development</option>
@@ -153,34 +162,43 @@ const AddMember = () => {
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Date of Borth</FormLabel>
-                    <Input type="date" onChange={ (e) => setBirthDate(e.target.value) }/>
+                    <Input type="date" onChange={ (e) => setBirthDate(e.target.value) }
+                    variant='filled' size='lg'/>
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Linkedin Link</FormLabel>
-                    <Input onChange={ (e) => setLinkedin(e.target.value) } placeholder="Enter link" />
+                    <Input onChange={ (e) => setLinkedin(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Twitter Link</FormLabel>
-                    <Input onChange={ (e) => setTwitter(e.target.value) } placeholder="Enter link" />
+                    <Input onChange={ (e) => setTwitter(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap" mb="10">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Instagram</FormLabel>
-                    <Input onChange={ (e) => setInstagram(e.target.value) } placeholder="Enter link" />
+                    <Input onChange={ (e) => setInstagram(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Facebook</FormLabel>
-                    <Input onChange={ (e) => setFacebook(e.target.value) } placeholder="Enter link" />
+                    <Input onChange={ (e) => setFacebook(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     </Box>
 
                     <Center>
-                    <Button type="submit" w="100%" mt="3" colorScheme="orange">
+                    <Button type="submit" w="10rem" mt="3" colorScheme="orange">
                         { loading && 
                         <>
                         { loading }

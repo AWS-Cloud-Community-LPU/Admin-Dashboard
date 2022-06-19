@@ -1,6 +1,6 @@
 import { useState} from "react";
 import { useHistory } from "react-router-dom";
-import { Box, Container, Heading, Button, Center} from "@chakra-ui/react";
+import { Box, Container, Text, Button, Divider} from "@chakra-ui/react";
 import { Input, FormLabel, Textarea } from "@chakra-ui/react";
 import {
     Alert,
@@ -66,41 +66,51 @@ const CreateBlog = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="10" mb="10">Add New Event Here</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Add New Event
+                </Text>
+                <Divider mb="10" />
 
                 <Box>
                 <form onSubmit={ handleSubmit }>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Title</FormLabel>
-                    <Input onChange={ (e) => setTitle(e.target.value) } placeholder="Write Title here" />
+                    <Input onChange={ (e) => setTitle(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Write Title here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Body</FormLabel>
-                    <Textarea onChange={ (e) => setBody(e.target.value) } placeholder="Write description here" />
+                    <Textarea onChange={ (e) => setBody(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Write description here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Video Embed Link</FormLabel>
-                    <Input onChange={ (e) => setEmbedLink(e.target.value) } placeholder="Paste link to embed video" />
+                    <Input onChange={ (e) => setEmbedLink(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Paste link to embed video" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Link</FormLabel>
-                    <Input onChange={ (e) => setLink(e.target.value) } placeholder="Paste event link here" />
+                    <Input onChange={ (e) => setLink(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Paste event link here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Date</FormLabel>
-                    <Input type="date" onChange={ (e) => setDate(e.target.value) }/>
+                    <Input type="date" onChange={ (e) => setDate(e.target.value) }
+                    variant='filled' size='lg'/>
                     </Box>
 
-                    <Center>
-                    <Button type="submit" w="100%" mt="8" colorScheme="orange">{ pending }</Button>
-                    </Center>
+                    <Button type="submit" w="10rem" mt="8" colorScheme="orange">{ pending }</Button>
 
                     { saveError &&
                     <Alert mt="6" status="error">

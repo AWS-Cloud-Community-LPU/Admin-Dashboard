@@ -17,25 +17,7 @@ const Members = () => {
     return (
         <Box mt="5">
 
-            <Container maxW="container.3xl">
-            <Grid
-            h="600px"
-            templateRows="repeat(2, 1fr)"
-            templateColumns="repeat(5, 1fr)"
-            gap={4}
-            >
-            <GridItem
-            boxShadow="2xl" 
-            borderRadius="lg" 
-            textAlign="left" 
-            display={["none", "none", "block"]} 
-            rowSpan={2} colSpan={1} 
-            bg="#F6F6F6">
-                <Sidenav/>
-            </GridItem>
-
-
-            <GridItem boxShadow="2xl" colSpan={[5,5,4]}>
+            <Container maxW="container.xl">
 
             <Box mt="4" mb="10" display="flex">
             <Heading color="#ff9900" fontSize="3xl" ml="6" mt="4">Community Members</Heading>
@@ -87,8 +69,6 @@ const Members = () => {
             </TabPanels>
             </Tabs>
 
-            </GridItem>
-            </Grid>
             </Container>
 
         </Box>

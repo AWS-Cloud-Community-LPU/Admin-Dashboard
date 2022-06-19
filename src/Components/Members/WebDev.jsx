@@ -94,12 +94,12 @@ const WebDevelopers = () => {
             }
                 
 
-            <Box mt="8" pb="8" display="flex" flexWrap="wrap" justifyContent="space-evenly">
+            <Box mt="8" pb="8" display="flex" flexWrap="wrap">
 
                 { data &&
                 <>
                 { data.docs.map(result => (
-                <Box w="16rem" mt="5" style={{boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"}} boxShadow="md" key={ result.id } 
+                <Box ml="4" w="16rem" mt="5" style={{boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"}} boxShadow="md" key={ result.id } 
                 borderRadius="md"
                 height="300px">  
 

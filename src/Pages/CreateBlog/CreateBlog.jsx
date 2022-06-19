@@ -1,6 +1,6 @@
 import { useState} from "react";
 import { useHistory } from "react-router-dom";
-import { Box, Container, Heading, Image, Button, Center, Text } from "@chakra-ui/react";
+import { Box, Container, Divider, Image, Button, Center, Text } from "@chakra-ui/react";
 import { Input, FormLabel, Textarea } from "@chakra-ui/react";
 import {
     Alert,
@@ -60,7 +60,7 @@ const CreateBlog = () => {
     // ! To give confirmation
     function giveConfirmnation(){
         toast({
-            title: "Blog added successfully !.",
+            title: "Blog added successfully !",
             status: "success",
             duration: 6000,
             isClosable: true,
@@ -102,46 +102,88 @@ const CreateBlog = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="10" mb="10">Add New Blog Here</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Add New Blog
+                </Text>
+                <Divider mb="10" />
 
                 <Box>
                 <form onSubmit={ handleSubmit }>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Title</FormLabel>
-                    <Input onChange={ (e) => setTitle(e.target.value) } placeholder="Write Title here" />
+                    <Input onChange={ (e) => setTitle(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Write Title here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Body</FormLabel>
-                    <Textarea onChange={ (e) => setBody(e.target.value) } placeholder="Write description here" />
+                    <Textarea onChange={ (e) => setBody(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Write description here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Link</FormLabel>
-                    <Input onChange={ (e) => setLink(e.target.value) } placeholder="Paste medium link here" />
+                    <Input onChange={ (e) => setLink(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Paste medium link here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Author Name</FormLabel>
-                    <Input onChange={ (e) => setAuthor(e.target.value) } placeholder="Name of author" />
+                    <Input onChange={ (e) => setAuthor(e.target.value) } 
+                    variant='filled' size='lg'
+                    placeholder="Name of author" />
                     </Box>
 
                     <Box>
                     <FormLabel>Blog Thumbnail</FormLabel>
-                    <Input onChange={ (e) => setThumbnail(e.target.files) } pt="1" pl="1" type="file"/>
+                    <Input onChange={ (e) => setThumbnail(e.target.files) } 
+                    variant='filled' size='lg'
+                    pt="1" pl="1" type="file"/>
                     </Box>
 
-                    <Center>
-                    <Button 
-                    onClick={ handleUpload } 
-                    w="100%" mt="5" 
-                    colorScheme="orange">
-                        Upload
-                    </Button>
-                    </Center>
+                    <Box display="flex" flexWrap="wrap-reverse" justifyContent="space-evenly">
+                        <Box w={["100%", "50%", "60%"]}>
+                            <Button
+                            onClick={ handleUpload } 
+                            w="10rem" mt="24" 
+                            colorScheme="orange">
+                                Upload
+                            </Button>
+
+                            <Button display="block" type="submit" 
+                            w="10rem" mt="3" colorScheme="orange">
+                                { pending }
+                            </Button>
+                        </Box>
+
+                        <Box w={["100%", "50%", "40%"]}>
+                            { loading &&
+                            <Center>
+                            <Spinner
+                            mt="10" mb="10"
+                            thickness="4px"
+                            speed="0.65s"
+                            emptyColor="gray.200"
+                            color="orange.300"
+                            size="xl"
+                            />
+                            <Text ml="4"> Uploading image...</Text>
+                            </Center>
+                            }
+
+                            { imgUrl &&
+                            <Box boxShadow="outline">
+                            <Image mt="8" w="100%" h="auto" src={imgUrl} />
+                            </Box>
+                            }
+                        </Box>
+                    </Box>
 
                     { error &&
                     <Alert status="error">
@@ -151,30 +193,6 @@ const CreateBlog = () => {
                     <CloseButton position="absolute" right="8px" top="8px" />
                     </Alert>
                     }
-
-                    { loading &&
-                    <Center>
-                    <Spinner
-                    mt="10" mb="10"
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="orange.300"
-                    size="xl"
-                    />
-                    <Text ml="4"> Uploading image...</Text>
-                    </Center>
-                    }
-
-                    { imgUrl &&
-                    <Box boxShadow="outline">
-                    <Image mt="8" w="100%" h="auto" src={imgUrl} />
-                    </Box>
-                    }
-
-                    <Center>
-                    <Button type="submit" w="100%" mt="8" colorScheme="orange">{ pending }</Button>
-                    </Center>
 
                     { saveError &&
                     <Alert mt="6" status="error">

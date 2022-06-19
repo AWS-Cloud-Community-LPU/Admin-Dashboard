@@ -6,7 +6,7 @@ import { useAuth } from "../../Context/AuthContext";
 
 const Sidenav = () => {
 
-    const { logout } = useAuth();
+    // const { logout } = useAuth();
     const history = useHistory();
     const [error, setError] = useState("");
 
@@ -50,10 +50,10 @@ const Sidenav = () => {
     },[]);
 
     function switchIndicator(){
-        setTimeout(
-            function(){
-                window.location.reload();
-            },10);
+        // setTimeout(
+        //     function(){
+        //         window.location.reload();
+        //     },10);
     }
 
     // ! Function for logout
@@ -61,7 +61,7 @@ const Sidenav = () => {
         setError("");
     
         try {
-          await logout();
+        //   await logout();
           history.push("/login");
         } catch {
           setError("Failed to log out");
@@ -70,7 +70,6 @@ const Sidenav = () => {
 
     return (
         <Box>
-            <Heading pl="16" mt="6" fontSize="xl">CATEGORIES</Heading>
 
             <Link onClick={switchIndicator} to="/">
             <Text className={home} cursor="pointer" borderRadius="md" 
@@ -94,6 +93,12 @@ const Sidenav = () => {
             <Text className={createEvent} cursor="pointer" borderRadius="md"
              mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
              fontSize="lg" mt="2">New Events</Text>
+            </Link>
+
+            <Link onClick={switchIndicator} to="/create/quiz">
+            <Text className={createEvent} cursor="pointer" borderRadius="md"
+             mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
+             fontSize="lg" mt="2">Create Quiz</Text>
             </Link>
 
             <Link onClick={switchIndicator} to="/members">

@@ -18,20 +18,20 @@ const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
-        <Box>
-        <Container display="flex" maxW="container.3xl">
+        <Box boxShadow="md">
+        <Container display="flex" maxW="container.xl">
             <Link to="/">
             <Image
                 mt="1"
-                boxSize="70px"
+                boxSize="50px"
                 objectFit="cover"
                 src={ AWSImage }
                 alt="aws.png"
             /> 
             </Link>
             
-            <Box ml="auto" mt="3" display={["block", "block", "none"]}>
-            <IconButton onClick={onOpen} aria-label="Search database" icon={<HamburgerIcon w={6} h={6} />} />
+            <Box ml="auto" mt="2">
+            <IconButton onClick={onOpen} aria-label="Search database" icon={<HamburgerIcon w={4} h={4} />} />
             </Box>
 
             <Drawer
