@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Box, Container, Heading, Image, Button, Center } from "@chakra-ui/react";
+import { Box, Container, Text, Divider, Image, Button, Center } from "@chakra-ui/react";
 import { Input, FormLabel } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
@@ -130,9 +130,12 @@ const UpdateMember = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="8" mb="10">Add New Member</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Update Member Details
+                </Text>
+                <Divider mb="10" />
 
                 { data &&
                 <Box>
@@ -147,11 +150,13 @@ const UpdateMember = () => {
                     </Center>
 
                     <Center mt="6">
-                    <Input onChange={ (e) => setPicture(e.target.files) } pt="1" pl="1" type="file"/>
+                    <Input onChange={ (e) => setPicture(e.target.files) } 
+                    variant='filled' size='lg'
+                    pt="1" pl="1" type="file"/>
                     </Center>
 
                     <Center>
-                    <Button onClick={ handleUpload } w="100%" mt="5" colorScheme="orange">
+                    <Button onClick={ handleUpload } w="10rem" mt="5" colorScheme="orange">
                         { pending &&
                         <>
                         { pending }
@@ -165,13 +170,17 @@ const UpdateMember = () => {
 
                     <Box mt="8" mb={["8", "10"]}>
                     <FormLabel>Name</FormLabel>
-                    <Input ref={ nameRef } defaultValue={ data.name } placeholder="Enter name" />
+                    <Input ref={ nameRef } defaultValue={ data.name } 
+                    variant='filled' size='lg'
+                    placeholder="Enter name" />
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Select Domain</FormLabel>
-                    <Select ref={ domainRef } defaultValue={ data.domain } placeholder="Select option">
+                    <Select ref={ domainRef } defaultValue={ data.domain } 
+                    variant='filled' size='lg'
+                    placeholder="Select option">
                     <option value="Anchor">Anchoring</option>
                     <option value="Web Development">Web Development</option>
                     <option value="Content">Content Development</option>
@@ -182,34 +191,44 @@ const UpdateMember = () => {
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Date of Borth</FormLabel>
-                    <Input type="date" ref={ birthDateRef } defaultValue={ data.birthday }/>
+                    <Input type="date" ref={ birthDateRef } 
+                    variant='filled' size='lg'
+                    defaultValue={ data.birthday }/>
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Linkedin Link</FormLabel>
-                    <Input ref={ linkedinRef } defaultValue={ data.linkedin_link } placeholder="Enter link" />
+                    <Input ref={ linkedinRef } defaultValue={ data.linkedin_link } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Twitter Link</FormLabel>
-                    <Input ref={ twitterRef } defaultValue={ data.twitter_link } placeholder="Enter link" />
+                    <Input ref={ twitterRef } defaultValue={ data.twitter_link } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     </Box>
 
                     <Box justifyContent="space-evenly" display="flex" flexWrap="wrap" mb="10">
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Instagram</FormLabel>
-                    <Input ref={ instagramRef } defaultValue={ data.instagram_link } placeholder="Enter link" />
+                    <Input ref={ instagramRef } defaultValue={ data.instagram_link } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     <Box mt="5" w={["100%", "45%"]}>
                     <FormLabel>Facebook</FormLabel>
-                    <Input ref={ facebookRef } defaultValue={ data.facebook_link } placeholder="Enter link" />
+                    <Input ref={ facebookRef } defaultValue={ data.facebook_link } 
+                    variant='filled' size='lg'
+                    placeholder="Enter link" />
                     </Box>
                     </Box>
 
                     <Center>
-                    <Button type="submit" w="100%" mt="3" colorScheme="orange">
+                    <Button type="submit" w="10rem" mt="3" colorScheme="orange">
                         { loading && 
                         <>
                         { loading }

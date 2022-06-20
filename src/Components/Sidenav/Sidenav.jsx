@@ -1,6 +1,6 @@
 import "./Sidenav.css";
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text, Button, Center } from "@chakra-ui/react";
+import { Box, Text, Button, Center } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
@@ -14,6 +14,7 @@ const Sidenav = () => {
     const [createBlog, setCreateBlog] = useState("");
     const [events, setEvents] = useState("");
     const [createEvent, setCreateEvent] = useState("");
+    const [createQuiz, setCreateQuiz] = useState("");
     const [members, setMembers] = useState("");
     const [addMember, setAddMember] = useState("");
 
@@ -37,6 +38,10 @@ const Sidenav = () => {
                 setCreateEvent("create-event");
             break;
 
+            case "/create/quiz" :
+                setCreateQuiz("create-quiz");
+            break;
+
             case "/members" :
                 setMembers("members");
             break;
@@ -49,11 +54,11 @@ const Sidenav = () => {
         }
     },[]);
 
-    function switchIndicator(){
-        // setTimeout(
-        //     function(){
-        //         window.location.reload();
-        //     },10);
+    function switchIndicator(){ 
+        setTimeout(
+            function(){
+                window.location.reload();
+            },10);
     }
 
     // ! Function for logout
@@ -96,7 +101,7 @@ const Sidenav = () => {
             </Link>
 
             <Link onClick={switchIndicator} to="/create/quiz">
-            <Text className={createEvent} cursor="pointer" borderRadius="md"
+            <Text className={createQuiz} cursor="pointer" borderRadius="md"
              mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
              fontSize="lg" mt="2">Create Quiz</Text>
             </Link>

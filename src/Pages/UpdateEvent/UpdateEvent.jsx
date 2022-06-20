@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Box, Container, Heading, Button, Center} from "@chakra-ui/react";
+import { Box, Container, Text, Divider, Button, Center} from "@chakra-ui/react";
 import { Input, FormLabel, Textarea } from "@chakra-ui/react";
 import {
     Alert,
@@ -85,9 +85,12 @@ const UpdateEvent = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="10" mb="10">Update Event Here</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Update Event
+                </Text>
+                <Divider mb="10" />
 
                 { error &&
                 <Alert status="error">
@@ -104,31 +107,40 @@ const UpdateEvent = () => {
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Title</FormLabel>
-                    <Input ref={ titleRef } defaultValue={ data.title } placeholder="Write Title here" />
+                    <Input ref={ titleRef } defaultValue={ data.title } 
+                    variant='filled' size='lg'
+                    placeholder="Write Title here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Body</FormLabel>
-                    <Textarea ref={ bodyRef } defaultValue={ data.body } placeholder="Write description here" />
+                    <Textarea ref={ bodyRef } defaultValue={ data.body } 
+                    variant='filled' size='lg' rows="10"
+                    placeholder="Write description here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Video Embed Link</FormLabel>
-                    <Input ref={ embedLinkRef } defaultValue={ data.embedLink } placeholder="Paste link to embed video" />
+                    <Input ref={ embedLinkRef } defaultValue={ data.embedLink } 
+                    variant='filled' size='lg'
+                    placeholder="Paste link to embed video" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Link</FormLabel>
-                    <Input ref={ linkRef } defaultValue={ data.link } placeholder="Paste event link here" />
+                    <Input ref={ linkRef } defaultValue={ data.link } 
+                    variant='filled' size='lg'
+                    placeholder="Paste event link here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Event Date</FormLabel>
-                    <Input type="date" ref={ dateRef } defaultValue={ data.date }/>
+                    <Input type="date" ref={ dateRef } defaultValue={ data.date }
+                    variant='filled' size='lg'/>
                     </Box>
 
                     <Center>
-                    <Button type="submit" w="100%" mt="8" colorScheme="orange">{ pending }</Button>
+                    <Button type="submit" w="10rem" mt="8" colorScheme="orange">{ pending }</Button>
                     </Center>
 
                     { saveError &&

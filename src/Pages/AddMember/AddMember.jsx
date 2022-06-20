@@ -133,7 +133,7 @@ const AddMember = () => {
                         { pending }
                         </>
                         }
-                        { spinner &&
+                        { spinner && 
                         <Spinner ml="4" />
                         }
                     </Button>

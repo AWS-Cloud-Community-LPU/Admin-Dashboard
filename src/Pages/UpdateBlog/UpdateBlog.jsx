@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Box, Container, Heading, Image, Button, Center, Text } from "@chakra-ui/react";
+import { Box, Container, Divider, Image, Button, Center, Text } from "@chakra-ui/react";
 import { Input, FormLabel, Textarea } from "@chakra-ui/react";
 import {
     Alert,
@@ -121,9 +121,12 @@ const UpdateBlog = () => {
 
     return (
         <Box pb="20">
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
 
-                <Heading mt="10" mb="10">Update Blog Here</Heading>
+                <Text mt="10" mb="2" fontWeight="400" fontSize="3xl">
+                    Update Blog
+                </Text>
+                <Divider mb="10" />
 
                 { data &&
                 <Box>
@@ -131,37 +134,45 @@ const UpdateBlog = () => {
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Title</FormLabel>
-                    <Input ref={ titleRef } defaultValue={ data.title } placeholder="Write Title here" />
+                    <Input ref={ titleRef } defaultValue={ data.title } 
+                    variant='filled' size='lg'
+                    placeholder="Write Title here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Body</FormLabel>
-                    <Textarea ref={ bodyRef } defaultValue={ data.body } placeholder="Write description here" />
+                    <Textarea ref={ bodyRef } defaultValue={ data.body } 
+                    variant='filled' size='lg' rows="10"
+                    placeholder="Write description here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Blog Link</FormLabel>
-                    <Input ref={ linkRef } defaultValue={ data.link } placeholder="Paste medium link here" />
+                    <Input ref={ linkRef } defaultValue={ data.link } 
+                    variant='filled' size='lg'
+                    placeholder="Paste medium link here" />
                     </Box>
 
                     <Box mb={["8", "10"]}>
                     <FormLabel>Author Name</FormLabel>
-                    <Input ref={ authorRef } defaultValue={ data.author } placeholder="Name of author" />
+                    <Input ref={ authorRef } defaultValue={ data.author } 
+                    variant='filled' size='lg'
+                    placeholder="Name of author" />
                     </Box>
 
                     <Box>
                     <FormLabel>Blog Thumbnail</FormLabel>
-                    <Input onChange={ (e) => setThumbnail(e.target.files) } pt="1" pl="1" type="file"/>
+                    <Input onChange={ (e) => setThumbnail(e.target.files) } 
+                    variant='filled' size='lg'
+                    pt="1" pl="1" type="file"/>
                     </Box>
 
-                    <Center>
                     <Button 
                     onClick={ handleUpload } 
-                    w="100%" mt="5" 
+                    w="10rem" mt="5" 
                     colorScheme="orange">
                         Upload
                     </Button>
-                    </Center>
 
                     { error &&
                     <Alert status="error">
@@ -193,7 +204,7 @@ const UpdateBlog = () => {
                     }
 
                     <Center>
-                    <Button type="submit" w="100%" mt="8" colorScheme="orange">{ pending }</Button>
+                    <Button type="submit" w="10rem" mt="8" colorScheme="orange">{ pending }</Button>
                     </Center>
 
                     { saveError &&
