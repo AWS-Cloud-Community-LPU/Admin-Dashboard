@@ -14,6 +14,7 @@ const Sidenav = () => {
     const [createBlog, setCreateBlog] = useState("");
     const [events, setEvents] = useState("");
     const [createEvent, setCreateEvent] = useState("");
+    const [quiz, setQuiz] = useState("");
     const [createQuiz, setCreateQuiz] = useState("");
     const [members, setMembers] = useState("");
     const [addMember, setAddMember] = useState("");
@@ -40,6 +41,10 @@ const Sidenav = () => {
 
             case "/create/quiz" :
                 setCreateQuiz("create-quiz");
+            break;
+
+            case "/quiz/questions" :
+                setCreateQuiz("quiz");
             break;
 
             case "/members" :
@@ -98,6 +103,12 @@ const Sidenav = () => {
             <Text className={createEvent} cursor="pointer" borderRadius="md"
              mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
              fontSize="lg" mt="2">New Events</Text>
+            </Link>
+
+            <Link onClick={switchIndicator} to="/quiz/questions">
+            <Text className={quiz} cursor="pointer" borderRadius="md"
+             mx="2" pl="16" py="3" _hover={{ bg: "orange.200" }} 
+             fontSize="lg" mt="2">Quiz</Text>
             </Link>
 
             <Link onClick={switchIndicator} to="/create/quiz">

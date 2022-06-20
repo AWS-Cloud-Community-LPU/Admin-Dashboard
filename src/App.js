@@ -16,6 +16,8 @@ import UpdateMember from './Pages/UpdateMember/UpdateMember';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Quiz from './Pages/Quiz/Quiz';
+import Questions from './Pages/Questions/Questions';
+import UpdateQuestion from './Pages/UpdateQuestion/UpdateQuestion';
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
         <PrivateRoute exact path="/update/event/:id" component={ UpdateEvent }/>
 
         <PrivateRoute exact path="/create/quiz" component={ Quiz }/>
+        <PrivateRoute exact path="/quiz/questions" component={ Questions }/>
+        <PrivateRoute exact path="/update/question/:id" component={ UpdateQuestion }/>
 
         <PrivateRoute exact path="/members" component={ Members }/>
         <PrivateRoute exact path="/add/members" component={ AddMember }/>
